@@ -17,9 +17,11 @@ class ViewController: UIViewController{
 
 
 
-    @IBAction func notePressed(_ sender: UIButton) {
-        
-        
+	//all 7 keys are under one @IBAction.Differentiated by using Tags, 1-7.
+	@IBAction func notePressed(_ sender: UIButton) {
+		
+		//test tag numbers when buttons pressed. 
+      print(sender.tag)
         
     }
     
