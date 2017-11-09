@@ -8,31 +8,38 @@
 
 import UIKit
 import AVFoundation
-import AudioToolbox
 
-class ViewController: UIViewController{
+
+class ViewController: UIViewController, AVAudioPlayerDelegate {
     
-// MARK: - View Did Load 
+	var audioPlayer : AVAudioPlayer!
+	
+	// MARK: - View Did Load
     override func viewDidLoad() {
         super.viewDidLoad()
     }
 
 
 
+	// MARK: - Functions
+	
 	//all 7 keys are under one @IBAction.Differentiated by using Tags, 1-7.
 	//if not using tags you'd have to make 7 diff. @IBAction's.
 	@IBAction func notePressed(_ sender: UIButton) {
 		
 		//test tag numbers when buttons pressed. 
-      print(sender.tag)
+      //print(sender.tag)
 		
-		// Load "mysoundname.wav"
-		if let soundURL = Bundle.main.url(forResource: "note1", withExtension: "wav") {
-			var mySound: SystemSoundID = 0
-			AudioServicesCreateSystemSoundID(soundURL as CFURL, &mySound)
-			// Play
-			AudioServicesPlaySystemSound(mySound);
+		let soundURL = Bundle.main.url(forResource: "note1", withExtension: "wav")
+		
+		do {
+			audioPlayer = try AVAudioPlayer(contentsOf: soundURL!)
 		}
+		catch {
+			print(error)
+		}
+		
+		audioPlayer.play()
 
         
     }
