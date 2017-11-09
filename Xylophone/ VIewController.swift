@@ -12,7 +12,7 @@ import AudioToolbox
 
 class ViewController: UIViewController{
     
-
+// MARK: - View Did Load 
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -24,7 +24,7 @@ class ViewController: UIViewController{
 	@IBAction func notePressed(_ sender: UIButton) {
 		
 		//test tag numbers when buttons pressed. 
-      //print(sender.tag)
+      print(sender.tag)
 		
 		// Load "mysoundname.wav"
 		if let soundURL = Bundle.main.url(forResource: "note1", withExtension: "wav") {
