@@ -12,24 +12,22 @@ import AVFoundation
 
 class ViewController: UIViewController, AVAudioPlayerDelegate {
     
-	// MARK: - Properties
+ // MARK: - Properties
 	var audioPlayer : AVAudioPlayer!
 	let soundArray = ["note1", "note2", "note3", "note4", "note5", "note6", "note7"]
-	var selectedSoundFileName = ""
 	
 	
-	// MARK: - View Did Load
+ // MARK: - View Did Load
     override func viewDidLoad() {
         super.viewDidLoad()
     }
 
 
- // MARK: - Interactions
+  // MARK: - Interactions
 	@IBAction func notePressed(_ sender: UIButton) {
 		
-		selectedSoundFileName = soundArray[sender.tag - 1]
-		
-		playSound()
+		playSound(soundFileName: soundArray[sender.tag - 1])
+	
 	}
 	
 	
@@ -37,11 +35,11 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
 	
 	//all 7 keys are under one @IBAction.Differentiated by using Tags, 1-7.
 	//if not using tags you'd have to make 7 diff. @IBAction's.
-	func playSound() {
+	func playSound(soundFileName : String) {
 		//testing: print tag numbers when buttons pressed.
 		//print(sender.tag)
 		
-		let soundURL = Bundle.main.url(forResource: selectedSoundFileName, withExtension: "wav")
+		let soundURL = Bundle.main.url(forResource: soundFileName, withExtension: "wav")
 		
 		//"do-catch-try" error handling.
 		do {
